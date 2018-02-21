@@ -21,7 +21,7 @@ CREATE TABLE `COMPANIA`(
   CodCompania CHAR(3),
   Nombre      VARCHAR(20),
   Logo        VARCHAR(256),
-  CONSTRAINT `algo` PRIMARY KEY (`CodCompania`)
+  CONSTRAINT `PK_COMPANIA` PRIMARY KEY (`CodCompania`)
 );
 
 /*
@@ -29,8 +29,10 @@ CREATE TABLE `COMPANIA`(
 */
 CREATE TABLE `TERMINAL`(
   Numero  VARCHAR(5),
-  CodIATA CHAR(3)
-
+  CodIATA CHAR(3),
+  CONSTRAINT `FK_AEROPUERTO`
+    FOREIGN KEY (`CodIATA`)
+    REFERENCES `AEROPUERTO` (`CodIATA`)
 );
 
 /*
