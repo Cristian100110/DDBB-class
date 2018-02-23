@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS `buscador-vuelos`;
 CREATE DATABASE `buscador-vuelos`;
-use `buscador-vuelos`
+USE `buscador-vuelos`
 
 /*
   IATA Codes are 3 letters long, but they dont uniquely identify an airport
@@ -32,7 +32,9 @@ CREATE TABLE `TERMINAL`(
   CodIATA CHAR(3),
   CONSTRAINT `FK_AEROPUERTO`
     FOREIGN KEY (`CodIATA`)
-    REFERENCES `AEROPUERTO` (`CodIATA`)
+    REFERENCES `AEROPUERTO` (`CodIATA`),
+
+  CONSTRAINT `PK_TERMINAL` PRIMARY KEY (`Numero`,`CodIATA`)
 );
 
 /*
@@ -43,31 +45,47 @@ CREATE TABLE `TERMINAL`(
   https://en.wikipedia.org/wiki/Flight_number
 */
 CREATE TABLE `VUELO`(
-  CodVuelo          INT(4) UNSIGNED,
-  CodCompañia       CHAR(3),
-  Fecha             DATE,
+  CodVuelo                   INT(4) UNSIGNED,
+  CodCompañia                CHAR(3),
+  Fecha                      DATE,
   CodIATA_Aeropuerto_Origen  CHAR(3),
   CodIATA_Aeropuerto_Destino CHAR(3),
-  Nombre_Aeropuerto_Origen  VARCHAR(20),
-  Nombre_Aeropuerto_Destino VARCHAR(20),
-  Estado            ENUM('OK','RETRASADO','CANCELADO'),
+  Numero_Terminal_Origen     VARCHAR(5),
+  Numero_Terminal_Destino    VARCHAR(5),
+  Nombre_Aeropuerto_Origen   VARCHAR(20),
+  Nombre_Aeropuerto_Destino  VARCHAR(20),
+  Estado                     ENUM('OK','RETRASADO','CANCELADO'),
 
   CONSTRAINT `FK_AEROPUERTO_Origen`
 		FOREIGN KEY (`CodIATA_Aeropuerto_Origen`,`Nombre_Aeropuerto_Origen`)
-    REFERENCES `AEROPUERTO` (`CodIATA`,`Nombre`),
+    REFERENCES  `AEROPUERTO` (`CodIATA`,`Nombre`),
 
   CONSTRAINT `FK_AEROPUERTO_Destino`
 		FOREIGN KEY (`CodIATA_Aeropuerto_Destino`,`Nombre_Aeropuerto_Destino`)
-    REFERENCES `AEROPUERTO` (`CodIATA`,`Nombre`)
+    REFERENCES  `AEROPUERTO` (`CodIATA`,`Nombre`),
 
+  CONSTRAINT `FK_TERMINAL_Origen`
+		FOREIGN KEY (`Numero_Terminal_Origen`)
+    REFERENCES  `TERMINAL` (`Numero`),
+
+  CONSTRAINT `FK_TERMINAL_Destino`
+		FOREIGN KEY (`Numero_Terminal_Destino`)
+    REFERENCES  `TERMINAL` (`Numero`),
+
+  CONSTRAINT `PK_VUELO` PRIMARY KEY (`CodVuelo`, `CodCompañia`, `Fecha`)
 );
 
 /*
   Data seat
 */
 CREATE TABLE `ASIENTO`(
+  CodVuelo                   INT(4) UNSIGNED,
+  CodCompañia                CHAR(3),
+  Fecha                      DATE,
   CodAsiento INT(4) UNSIGNED,
-  TipoClase ENUM('Turista','Turista Superior','Ejecutiva','Primera clase')
+  TipoClase  ENUM('Turista','Turista Superior','Ejecutiva','Primera clase'),
+
+  CONSTRAINT `PK_SEATS` PRIMARY KEY (`CodVuelo`, `CodCompañia`, `Fecha`, `CodAsiento`)
 );
 
 /*
@@ -78,7 +96,7 @@ CREATE TABLE `PASAJERO`(
   Nombre    VARCHAR(20),
   Apellido1 VARCHAR(20),
   Apellido2 VARCHAR(20),
-  CONSTRAINT `algofgthn` PRIMARY KEY (`DNI`)
+  CONSTRAINT `PK_DNI` PRIMARY KEY (`DNI`)
 );
 
 /*
@@ -87,13 +105,19 @@ CREATE TABLE `PASAJERO`(
 CREATE TABLE `RESERVA`(
   Localizador VARCHAR(20),
   DNI         CHAR(10),
-  ‎Precio      DECIMAL(10.2)
+  ‎Precio      DECIMAL(10.2),
+
+  CONSTRAINT `FK_PASAJERO`
+    FOREIGN KEY (`DNI`)
+    REFERENCES  `PASAJERO` (`DNI`),
+
+  CONSTRAINT `PK_RESERVA` PRIMARY KEY (`Localizador`)
 );
 
 /*
  Data reservation flight
 */
 CREATE TABLE `RESERVA_VUELOS`(
-  Localizador     VARCHAR(20),
-  CodVuelo INT(4) UNSIGNED
+  Localizador VARCHAR(20),
+  CodVuelo    INT(4) UNSIGNED
 );
