@@ -79,11 +79,11 @@ CREATE TABLE `VUELO`(
   Data seat
 */
 CREATE TABLE `ASIENTO`(
-  CodVuelo                   INT(4) UNSIGNED,
-  CodCompañia                CHAR(3),
-  Fecha                      DATE,
-  CodAsiento INT(4) UNSIGNED,
-  TipoClase  ENUM('Turista','Turista Superior','Ejecutiva','Primera clase'),
+  CodVuelo    INT(4) UNSIGNED,
+  CodCompañia CHAR(3),
+  Fecha       DATE,
+  CodAsiento  INT(4) UNSIGNED,
+  TipoClase   ENUM('Turista','Turista Superior','Ejecutiva','Primera clase'),
 
   CONSTRAINT `PK_SEATS` PRIMARY KEY (`CodVuelo`, `CodCompañia`, `Fecha`, `CodAsiento`)
 );
