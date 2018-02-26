@@ -46,7 +46,7 @@ CREATE TABLE `TERMINAL`(
 */
 CREATE TABLE `VUELO`(
   CodVuelo                   INT(4) UNSIGNED,
-  CodCompañia                CHAR(3),
+  CodCompania                CHAR(3),
   Fecha                      DATE,
   CodIATA_Aeropuerto_Origen  CHAR(3),
   CodIATA_Aeropuerto_Destino CHAR(3),
@@ -72,20 +72,28 @@ CREATE TABLE `VUELO`(
 		FOREIGN KEY (`Numero_Terminal_Destino`)
     REFERENCES  `TERMINAL` (`Numero`),
 
-  CONSTRAINT `PK_VUELO` PRIMARY KEY (`CodVuelo`, `CodCompañia`, `Fecha`)
+  CONSTRAINT `FK_COMPANIA_flight`
+    FOREIGN KEY (`CodCompania`)
+    REFERENCES `COMPANIA`(`CodCompania`),
+
+  CONSTRAINT `PK_VUELO` PRIMARY KEY (`CodVuelo`, `CodCompania`, `Fecha`)
 );
 
 /*
   Data seat
 */
 CREATE TABLE `ASIENTO`(
-  CodVuelo                   INT(4) UNSIGNED,
-  CodCompañia                CHAR(3),
-  Fecha                      DATE,
-  CodAsiento INT(4) UNSIGNED,
-  TipoClase  ENUM('Turista','Turista Superior','Ejecutiva','Primera clase'),
+  CodVuelo    INT(4) UNSIGNED,
+  CodCompania CHAR(3),
+  Fecha       DATE,
+  CodAsiento  INT(4) UNSIGNED,
+  TipoClase   ENUM('Turista','Turista Superior','Ejecutiva','Primera clase'),
 
-  CONSTRAINT `PK_SEATS` PRIMARY KEY (`CodVuelo`, `CodCompañia`, `Fecha`, `CodAsiento`)
+  CONSTRAINT `FK_VUELO`
+    FOREIGN KEY (`CodVuelo`,`CodCompania`,`Fecha`)
+    REFERENCES `VUELO`(`CodVuelo`,`CodCompania`,`Fecha`),
+
+  CONSTRAINT `PK_SEATS` PRIMARY KEY (`CodVuelo`, `CodCompania`, `Fecha`, `CodAsiento`)
 );
 
 /*
@@ -119,5 +127,16 @@ CREATE TABLE `RESERVA`(
 */
 CREATE TABLE `RESERVA_VUELOS`(
   Localizador VARCHAR(20),
-  CodVuelo    INT(4) UNSIGNED
+  CodVuelo    INT(4) UNSIGNED,
+  CodCompania CHAR(3),
+  Fecha       DATE,
+  CodAsiento  INT(4) UNSIGNED,
+
+  CONSTRAINT `FK_RESERVA`
+    FOREIGN KEY (`Localizador`)
+    REFERENCES `RESERVA`(`Localizador`),
+
+  CONSTRAINT `FK_VUELO_`
+    FOREIGN KEY (`CodVuelo`, `CodCompania`, `Fecha`, `CodAsiento`)
+    REFERENCES `ASIENTO`(`CodVuelo`, `CodCompania`, `Fecha`, `CodAsiento`)
 );
