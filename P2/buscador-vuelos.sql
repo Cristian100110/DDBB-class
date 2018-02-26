@@ -46,7 +46,7 @@ CREATE TABLE `TERMINAL`(
 */
 CREATE TABLE `VUELO`(
   CodVuelo                   INT(4) UNSIGNED,
-  CodCompañia                CHAR(3),
+  CodCompania                CHAR(3),
   Fecha                      DATE,
   CodIATA_Aeropuerto_Origen  CHAR(3),
   CodIATA_Aeropuerto_Destino CHAR(3),
@@ -80,7 +80,7 @@ CREATE TABLE `VUELO`(
 */
 CREATE TABLE `ASIENTO`(
   CodVuelo    INT(4) UNSIGNED,
-  CodCompañia CHAR(3),
+  CodCompania CHAR(3),
   Fecha       DATE,
   CodAsiento  INT(4) UNSIGNED,
   TipoClase   ENUM('Turista','Turista Superior','Ejecutiva','Primera clase'),
