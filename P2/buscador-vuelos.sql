@@ -16,6 +16,8 @@ CREATE TABLE `AEROPUERTO`(
 
 /*
   CodCompania will be an ICAO code
+  https://smart-drone.es/codigos-oaci-aeropuertos/
+  https://es.wikipedia.org/wiki/Anexo:C%C3%B3digos_OACI_de_aerol%C3%ADneas
 */
 CREATE TABLE `COMPANIA`(
   CodCompania CHAR(3),
@@ -28,8 +30,8 @@ CREATE TABLE `COMPANIA`(
   DATA terminal
 */
 CREATE TABLE `TERMINAL`(
-  Numero  VARCHAR(5),
   CodIATA CHAR(3),
+  Numero  VARCHAR(5),
   CONSTRAINT `FK_AEROPUERTO`
     FOREIGN KEY (`CodIATA`)
     REFERENCES `AEROPUERTO` (`CodIATA`),
@@ -50,10 +52,10 @@ CREATE TABLE `VUELO`(
   Fecha                      DATE,
   CodIATA_Aeropuerto_Origen  CHAR(3),
   CodIATA_Aeropuerto_Destino CHAR(3),
-  Numero_Terminal_Origen     VARCHAR(5),
-  Numero_Terminal_Destino    VARCHAR(5),
   Nombre_Aeropuerto_Origen   VARCHAR(20),
   Nombre_Aeropuerto_Destino  VARCHAR(20),
+  Numero_Terminal_Origen     VARCHAR(5),
+  Numero_Terminal_Destino    VARCHAR(5),
   Estado                     ENUM('OK','RETRASADO','CANCELADO'),
 
   CONSTRAINT `FK_AEROPUERTO_Origen`
