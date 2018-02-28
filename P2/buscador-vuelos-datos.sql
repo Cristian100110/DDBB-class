@@ -27,11 +27,11 @@ DELETE FROM AEROPUERTO WHERE CodIATA='VLC' AND Nombre = "Aeropuerto de Manises";
 COMPANIA Data
 */
 INSERT INTO `COMPANIA`
-    (CodCompania, Nombre,               Logo)
+    (CodCompania, Nombre,                Logo)
   VALUES
-    ('PMI',     'Air Europa Express'   ,NULL),
-    ('DRD',     'Air Madrid'           ,NULL),
-    ('HTH',     'Helitt Líneas Aéreas' ,NULL);
+    ('PMI',      'Air Europa Express'   ,NULL),
+    ('DRD',      'Air Madrid'           ,NULL),
+    ('HTH',      'Helitt Líneas Aéreas' ,NULL);
 
 
 /*
@@ -77,3 +77,52 @@ INSERT INTO `VUELO`
      'Aeropuerto de Gran Canaria','Telde(Las Palmas)',
      'T3','T4',
      'CANCELADO');
+
+/*
+DATO ASIENTO
+*/
+INSERT INTO `ASIENTO`
+    (CodVuelo, CodCompania, Fecha, CodAsiento, TipoClase)
+  VALUES
+  ('','','','',''),
+  ('','','','',''),
+  ('','','','',''),
+  ('','','','',''),
+  ('','','','','');
+
+
+/*
+DATO PASAJERO
+*/
+INSERT INTO `PASAJERO`
+    (DNI,          Nombre,   Apellido1,  Apellido2)
+  VALUES
+    ('55470852A', 'Carmen', 'Mairena',  'Perez'),
+    ('82683781K', 'Tomas',  'Gonzalez', 'Soto'),
+    ('09834235O', 'Amelia', 'Ramirez',  'Silva'),
+    ('58246723Q', 'Carlos', 'Martinez', 'Castillo'),
+    ('84262355T', 'Lucas',  'Medina',   'Sanchez');
+
+/*
+DATO RESERVA
+*/
+INSERT INTO `RESERVA`
+    (Localizador, DNI, Precio)
+  VALUES
+    ('','',''),
+    ('','',''),
+    ('','',''),
+    ('','',''),
+    ('','','');
+
+/*
+DATO RESERVA_VUELOS
+*/
+INSERT INTO `RESERVA_VUELOS`
+    (Localizador, CodVuelo, CodCompania, Fecha, CodAsiento)
+  VALUES
+    ('','','','',''),
+    ('','','','',''),
+    ('','','','',''),
+    ('','','','',''),
+    ('','','','','');
