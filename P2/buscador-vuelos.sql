@@ -8,8 +8,8 @@ USE `buscador-vuelos`
 */
 CREATE TABLE `AEROPUERTO`(
   CodIATA CHAR(3),
-  Nombre  VARCHAR(20),
-  Ciudad  VARCHAR(20),
+  Nombre  VARCHAR(30),
+  Ciudad  VARCHAR(30),
   Pais    VARCHAR(20),
   CONSTRAINT `PK_AIRPORT` PRIMARY KEY (`CodIATA`,`Nombre`)
 );
@@ -52,8 +52,8 @@ CREATE TABLE `VUELO`(
   Fecha                      DATE,
   CodIATA_Aeropuerto_Origen  CHAR(3),
   CodIATA_Aeropuerto_Destino CHAR(3),
-  Nombre_Aeropuerto_Origen   VARCHAR(20),
-  Nombre_Aeropuerto_Destino  VARCHAR(20),
+  Nombre_Aeropuerto_Origen   VARCHAR(30),
+  Nombre_Aeropuerto_Destino  VARCHAR(30),
   Numero_Terminal_Origen     VARCHAR(5),
   Numero_Terminal_Destino    VARCHAR(5),
   Estado                     ENUM('OK','RETRASADO','CANCELADO'),
