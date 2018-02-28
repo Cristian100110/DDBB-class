@@ -74,7 +74,7 @@ INSERT INTO `VUELO`
      'RETRASADO'),
     ( 028,'HTH','2017-12-12',
      'LPA','MAD',
-     'Aeropuerto de Gran Canaria','Telde(Las Palmas)',
+     'Aeropuerto de Gran Canaria','Aeropuerto Adolfo Suárez',
      'T3','T4',
      'CANCELADO');
 
