@@ -17,6 +17,7 @@ UPDATE AEROPUERTO SET CodIATA='LPA' WHERE CodIATA='LPP';
 UPDATE AEROPUERTO SET Pais='España' WHERE Pais='Epaña';
 
 DELETE FROM AEROPUERTO WHERE CodIATA="TFN" And Nombre = "Aeropuerto de Tenerife Norte";
+INSERT INTO `AEROPUERTO` VALUES ('TFN',  'Aeropuerto de Tenerife Norte', 'Santa Cruz de Tenerife', 'España');
 /*
 DELETE FROM AEROPUERTO WHERE CodIATA='LPP' AND Nombre = "Aeropuerto de Gran Canaria";
 DELETE FROM AEROPUERTO WHERE CodIATA='VLC' AND Nombre = "Aeropuerto de Manises";
@@ -26,28 +27,27 @@ DELETE FROM AEROPUERTO WHERE CodIATA='VLC' AND Nombre = "Aeropuerto de Manises";
 COMPANIA Data
 */
 INSERT INTO `COMPANIA`
-    (CodCompania, Nombre,               Logo)
+    (CodCompania, Nombre,                Logo)
   VALUES
-    ('PMI',     'Air Europa Express'   ,NULL),
-    ('DRD',     'Air Madrid'           ,NULL),
-    ('HTH',     'Helitt Líneas Aéreas' ,NULL);
+    ('PMI',      'Air Europa Express'   ,NULL),
+    ('DRD',      'Air Madrid'           ,NULL),
+    ('HTH',      'Helitt Líneas Aéreas' ,NULL);
 
 
 /*
   TERMINAL Data
 */
 INSERT INTO `TERMINAL`
-    (CodIATA, NumeroA)
+    (CodIATA, Numero)
   VALUES
     ('IBZ', 'T1'),
-    ('MAD', 'T1'),
-    ('VLC', 'T2'),
+    ('MAD', 'T1')/*,
     ('MAD', 'T3'),
     ('MAD', 'T4'),
-    ('IBZ', 'T1'),
     ('VLC', 'T1'),
+    ('VLC', 'T2'),
     ('LPP', 'T1'),
-    ('TFN', 'T1');
+    ('TFN', 'T1')*/;
 
 /*
   VUELO DATA
