@@ -17,6 +17,7 @@ UPDATE AEROPUERTO SET CodIATA='LPA' WHERE CodIATA='LPP';
 UPDATE AEROPUERTO SET Pais='España' WHERE Pais='Epaña';
 
 DELETE FROM AEROPUERTO WHERE CodIATA="TFN" And Nombre = "Aeropuerto de Tenerife Norte";
+INSERT INTO `AEROPUERTO` VALUES ('TFN',  'Aeropuerto de Tenerife Norte', 'Santa Cruz de Tenerife', 'España');
 /*
 DELETE FROM AEROPUERTO WHERE CodIATA='LPP' AND Nombre = "Aeropuerto de Gran Canaria";
 DELETE FROM AEROPUERTO WHERE CodIATA='VLC' AND Nombre = "Aeropuerto de Manises";
@@ -37,16 +38,18 @@ INSERT INTO `COMPANIA`
   TERMINAL Data
 */
 INSERT INTO `TERMINAL`
-    (CodIAT, NumeroA)
+    (CodIATA, Numero)
   VALUES
     ('IBZ', 'T1'),
     ('MAD', 'T1'),
-    ('VLC', 'T2'),
+    ('MAD', 'T2'),
     ('MAD', 'T3'),
     ('MAD', 'T4'),
-    ('IBZ', 'T1'),
     ('VLC', 'T1'),
-    ('LPP', 'T1'),
+    ('VLC', 'T2'),
+    ('LPA', 'T1'),
+    ('LPA', 'T2'),
+    ('LPA', 'T3'),
     ('TFN', 'T1');
 
 /*
@@ -70,7 +73,7 @@ INSERT INTO `VUELO`
      'T2','T1',
      'RETRASADO'),
     ( 028,'HTH','2017-12-12',
-     'LPP','MAD',
+     'LPA','MAD',
      'Aeropuerto de Gran Canaria','Telde(Las Palmas)',
      'T3','T4',
      'CANCELADO');
