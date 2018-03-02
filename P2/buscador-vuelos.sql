@@ -73,11 +73,11 @@ CREATE TABLE `VUELO`(
   CONSTRAINT `FK_TERMINAL_Destino`
 		FOREIGN KEY (`Numero_Terminal_Destino`)
     REFERENCES  `TERMINAL` (`Numero`),
-
+/*
   CONSTRAINT `FK_COMPANIA_flight`
     FOREIGN KEY (`CodCompania`)
     REFERENCES `COMPANIA`(`CodCompania`),
-
+*/
   CONSTRAINT `PK_VUELO` PRIMARY KEY (`CodVuelo`, `CodCompania`, `Fecha`)
 );
 
