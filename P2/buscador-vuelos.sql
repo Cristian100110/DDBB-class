@@ -134,6 +134,9 @@ CREATE TABLE `RESERVA_VUELOS`(
   Fecha       DATE,
   CodAsiento  INT(4) UNSIGNED,
 
+  CONSTRAINT `PK_RE_VU` PRIMARY KEY
+    (`Localizador`,`CodVuelo`, `CodCompania`, `Fecha`, `CodAsiento`);
+
   CONSTRAINT `FK_RESERVA`
     FOREIGN KEY (`Localizador`)
     REFERENCES `RESERVA`(`Localizador`),
