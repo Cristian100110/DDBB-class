@@ -11,5 +11,12 @@ GRANT ALL PRIVILEGES ON `buscador-vuelos`.* TO 'admin'@'localhost'
   WITH GRANT OPTION;
 
 CREATE USER 'normaluser'@'localhost' IDENTIFIED BY 'password';
-GRANT  SELECT ON `buscador-vuelos`.* TO 'normaluser'@'localhost';
-CREATE USER 'normaluser'@'localhost';
+/* normaluser can __create__ a reservation */
+GRANT  INSERT ON
+  `buscador-vuelos`.`PASAJERO`,`buscador-vuelos`.`RESERVA`, `buscador-vuelos`.`RESERVA_VUELOS`
+  TO 'normaluser'@'localhost';
+/* can also see flights data, not other reservations */
+GRANT  SELECT ON
+  `buscador-vuelos`.`AEROPUERTO`,`buscador-vuelos`.`TERMINAL`,`buscador-vuelos`.`COMPANIA`,
+  `buscador-vuelos`.`VUELO`, `buscador-vuelos`.`ASIENTO`
+  TO 'normaluser'@'localhost';
