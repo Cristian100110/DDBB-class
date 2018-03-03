@@ -109,11 +109,11 @@ DATO RESERVA
 INSERT INTO `RESERVA`
     (Localizador, DNI, Precio)
   VALUES
-    ('','55470852A','347.00'),
-    ('','82683781K','123.99'),
-    ('','09834235O','231.99'),
-    ('','58246723Q','324.99'),
-    ('','84262355T','234.00');
+    ('arc5721','55470852A','347.00'),
+    ('bin5894','82683781K','123.99'),
+    ('sed8514','09834235O','231.99'),
+    ('tuy8791','58246723Q','324.99'),
+    ('hjm4448','84262355T','234.00');
 
 /*
 DATO RESERVA_VUELOS
@@ -121,8 +121,44 @@ DATO RESERVA_VUELOS
 INSERT INTO `RESERVA_VUELOS`
     (Localizador, CodVuelo, CodCompania, Fecha, CodAsiento)
   VALUES
-    ('','4234','PMI','2017-10-25','36'),
-    ('','4234','PMI','2017-10-25','92'),
-    ('','1727','DRD','2017-11-01','39'),
-    ('','1727','DRD','2017-11-01','12'),
-    ('',' 028','HTH','2017-12-12','68');
+    ('arc5721','4234','PMI','2017-10-25','36'),
+    ('bin5894','4234','PMI','2017-10-25','92'),
+    ('sed8514','1727','DRD','2017-11-01','39'),
+    ('tuy8791','1727','DRD','2017-11-01','12'),
+    ('hjm4448',' 028','HTH','2017-12-12','68'),
+    ('hjm4448',' 028','HTH','2017-12-12','67'),
+    ('hjm4448',' 028','HTH','2017-12-12','66')
+    ;
+
+
+
+/*
+ Example of new seats reservation
+*/
+SET autocommit = 0;
+START TRANSACTION;
+
+INSERT INTO `PASAJERO`
+    (DNI,          Nombre,   Apellido1,  Apellido2)
+  VALUES
+    ('00000000X', 'John',  'Doe',   'none');
+
+INSERT INTO `RESERVA`
+    (Localizador, DNI, Precio)
+  VALUES
+    ('tet1234','55470852A','347.00');
+
+INSERT INTO `RESERVA_VUELOS`
+    (Localizador, CodVuelo, CodCompania, Fecha, CodAsiento)
+  VALUES
+    ('arc5721','1727','DRD','2017-11-01','45'),
+    ('bin5894','1727','DRD','2017-11-01','46'),
+    ('bin5894','1727','DRD','2017-11-01','47'),
+    ('bin5894','1727','DRD','2017-11-01','48'),
+    ('bin5894','1727','DRD','2017-11-01','49'),
+    ('bin5894','1727','DRD','2017-11-01','50'),
+    ('bin5894','1727','DRD','2017-11-01','51'),
+    ('bin5894','1727','DRD','2017-11-01','52'),
+    ('bin5894','1727','DRD','2017-11-01','53');
+
+COMMIT;
