@@ -115,7 +115,7 @@ CREATE TABLE `PASAJERO`(
 CREATE TABLE `RESERVA`(
   Localizador VARCHAR(20),
   DNI         CHAR(10),
-  ‎Precio      DECIMAL(10.2),
+  ‎Precio      DECIMAL(10,2),
 
   CONSTRAINT `FK_PASAJERO`
     FOREIGN KEY (`DNI`)
